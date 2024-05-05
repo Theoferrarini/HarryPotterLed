@@ -1,0 +1,31 @@
+.character {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.character img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.characters-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.characters-table td {
+    width: 33.33%;
+    padding: 10px;
+    vertical-align: top;
+}
+
+body {
+    background-image: url(hp2.jpg);
+    background-attachment: fixed;
+}
+
+header{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.39);
+}

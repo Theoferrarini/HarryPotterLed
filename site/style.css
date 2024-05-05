@@ -1,0 +1,22 @@
+header {
+  text-align: center;
+  margin-top: 10%;
+}
+
+header a {
+  color: rgb(197, 23, 23);
+  font-size: 200%;
+}
+
+body {
+  background-image: url(hp1-transformed.jpeg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-x: center;
+  color: #d3a425;
+  font-size: 150%;
+}
+
+p {
+  background-color: rgba(0, 0, 0, 0.434);
+}

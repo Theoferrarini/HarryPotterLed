@@ -1,0 +1,74 @@
+  <!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Harry Potter Card List</title>
+      <link rel="stylesheet" href="style-hp.css" />
+    </head>
+    <header>
+      <nav>
+        <h1><a href="index.html">Home</a></h1>
+      </nav>
+    </header>
+    <body>
+      <div id="characters"></div>
+
+      <script>
+        //retrouver les personnages
+        function fetchCharacters() {
+          return fetch("https://hp-api.lainocs.fr/characters").then((response) =>
+            response.json()
+          );
+        }
+        //montrer les perosnnages
+        async function displayCharacters() {
+          const data = await fetchCharacters();
+          const charactersContainer = document.querySelector("#characters");
+
+          const charactersTable = document.createElement("table");
+          charactersTable.classList.add("characters-table");
+
+          let row;
+          data.forEach((character, index) => {
+            if (index % 3 === 0) {
+              row = charactersTable.insertRow();
+            }
+            const cell = row.insertCell();
+            const characterLink = document.createElement("a");
+            characterLink.href = `single-hp.html?slug=${character.slug}`;
+            const characterDiv = document.createElement("div");
+            characterDiv.classList.add("character");
+            characterDiv.style.backgroundImage = `url('${getHouseBackground(
+              character.house
+            )}')`;
+            characterDiv.innerHTML = `
+                      <h2>${character.name}</h2>
+                      <img src="${character.image}" alt="${character.name}">
+                  `;
+            characterLink.appendChild(characterDiv);
+            cell.appendChild(characterLink);
+          });
+
+          charactersContainer.appendChild(charactersTable);
+        }
+        //attribuer le bon fond pour chaque maison
+        function getHouseBackground(house) {
+          switch (house) {
+            case "Gryffindor":
+              return "Gryffondor.jpg";
+            case "Slytherin":
+              return "serpentard.jpeg";
+            case "Hufflepuff":
+              return "poufsouffle.jpeg";
+            case "Ravenclaw":
+              return "serdaigle.jpeg";
+            default:
+              return "autres-hp.jpg";
+          }
+        }
+
+        displayCharacters();
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style-card.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards</title>
+  </head>
+  <header>
+    <nav>
+      <h1><a href="index.html">Home</a></h1>
+      <h1><a href="hp.html">Cards list</a></h1>
+    </nav>
+  </header>
+  <body>
+    <div id="character"></div>
+    <script>
+      function fetchCharacter() {
+        let url = window.location.search;
+        let slug = new URLSearchParams(url).get("slug");
+        return fetch("https://hp-api.lainocs.fr/characters/" + slug).then(
+          (response) => response.json()
+        );
+      }
+
+      async function displayCharacter() {
+        const data = await fetchCharacter();
+        fetch("http://192.168.83.24:3000/house", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ house: data.house }),
+        }).then(() => console.log("ok1"));
+        console.log(data);
+        document.querySelector("#character").innerHTML = `
+            <div class="info">
+                <h1 class="name">${data.name}</h1>
+                <p> Eyes color : ${data.eyes}</p>
+                <p> Hair color : ${data.hairs}</p>
+                <p> Blodd : ${data.blood} </p>
+                <p> Wand : ${data.wand ? data.wand : "?"}</p>
+                <p> Role : ${data.role} </p>
+                <p> House : ${data.house ? data.house : "?"}</p>
+                <p> Actor :${data.actor}</p>
+                <a href="hp.html"> Back </a>
+            </div>
+            <div class="image">
+                <img src="${data.image}" alt="${data.name}">
+            </div>
+            `;
+      }
+
+      displayCharacter();
+    </script>
+  </body>
+</html>

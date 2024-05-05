@@ -1,0 +1,38 @@
+#character {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#character .info {
+    flex: 1;
+    font-size: 25px;
+    text-align:left ;
+}
+
+#character img {
+    max-width: 85%;
+    height: auto;
+    max-height: 920px;
+}
+
+.name {
+    text-align:center;
+    font-size: 150%;
+}
+
+header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.431);
+}
+
+body {
+    background-image: url(hp2.jpg);
+    color: #d3a425;
+}
+
+body a {
+    color: rgb(197, 23, 23);
+} 
